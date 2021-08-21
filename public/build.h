@@ -52,7 +52,7 @@ For more information, please refer to <http://unlicense.org/>
 #undef XASH_ARMv6
 #undef XASH_ARMv7
 #undef XASH_ARMv8
-//#undef XASH_BIG_ENDIAN
+#undef XASH_BIG_ENDIAN
 #undef XASH_BSD
 #undef XASH_E2K
 #undef XASH_EMSCRIPTEN
@@ -60,13 +60,14 @@ For more information, please refer to <http://unlicense.org/>
 #undef XASH_IOS
 #undef XASH_JS
 #undef XASH_LINUX
-//#undef XASH_LITTLE_ENDIAN
+#undef XASH_LITTLE_ENDIAN
 #undef XASH_MINGW
 #undef XASH_MIPS
 #undef XASH_MOBILE_PLATFORM
 #undef XASH_MSVC
 #undef XASH_NETBSD
 #undef XASH_OPENBSD
+#undef XASH_PPC
 #undef XASH_HAIKU
 #undef XASH_WIN32
 #undef XASH_WIN64
@@ -207,6 +208,14 @@ For more information, please refer to <http://unlicense.org/>
 #elif defined __e2k__
 	#define XASH_64BIT 1
 	#define XASH_E2K 1
+#elif defined __ppc__ || defined _M_PPC
+	#define XASH_PPC 1
+#elif defined __ppc64__ || defined _M_PPC64
+	#define XASH_64BIT 1
+	#define XASH_PPC 1	
+#elif defined __ppc64le__ || defined _M_PPC64LE
+	#define XASH_64BIT 1
+	#define XASH_PPC 1
 #else
 	#error "Place your architecture name here! If this is a mistake, try to fix conditions above and report a bug"
 #endif

@@ -47,6 +47,7 @@ DEFINES = [
 'XASH_MSVC',
 'XASH_NETBSD',
 'XASH_OPENBSD',
+'XASH_PPC',
 'XASH_HAIKU',
 'XASH_WIN32',
 'XASH_WIN64',
@@ -119,6 +120,12 @@ def configure(conf):
 		buildarch = "javascript"
 	elif conf.env.XASH_E2K:
 		buildarch = "e2k"
+	elif conf.env.XASH_PPC and conf.env.XASH_BIG_ENDIAN:
+		buildarch = "ppc"
+	elif conf.env.XASH_PPC and conf.env.XASH_BIG_ENDIAN and conf.env.XASH_64BIT:
+		buildarch = "ppc64"
+	elif conf.env.XASH_PPC and conf.env.XASH_LITTLE_ENDIAN and conf.env.XASH_64BIT:
+		buildarch = "ppc64le"
 	else:
 		raise conf.fatal("Place your architecture name in build.h and library_naming.py!\n"
 			"If this is a mistake, try to fix conditions above and report a bug")
